@@ -4,21 +4,17 @@
 	<groupId>Bus</groupId>
 	<artifactId>Bus</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
-
-		<resources>
-			<resource>
-				<directory>src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-
-		</resources>
-
-
-
+         <resources>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
 	</build>
 
 
@@ -56,8 +52,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<version>4.12</version>
 		</dependency>
 
 		<dependency>

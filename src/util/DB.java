@@ -11,7 +11,14 @@ public class DB {
 	static {
 		try{
 		// class path
+//		String resource = "/src/Configuration.xml";
+//		String resource = "/Configuration.xml";
+			
 		String resource = "Configuration.xml";
+
+
+
+		
 		Reader reader = Resources.getResourceAsReader(resource);
 		sessionFactory = new SqlSessionFactoryBuilder()
 			.build(reader);
