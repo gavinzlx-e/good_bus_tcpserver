@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+  
+<mapper namespace="all">
+	
+	
+	<select id="getBusStation" resultType="java.util.Map">
+	 	select  SUBROUTEID,STATIONID, DUALSERIALID from  mcrsegmentstationgs	 
+	</select>
+	
+
+<!-- 这个线路 到达这个站的最新时间和到达的第几个站	 -->
+	<select id="getLastInfo" resultType="java.util.Map">
+		  select gprs.subrouteid  as  "subroutid",  gprs.productid as "busid", gprs.STATIONSEQNUM  as "stationnumber",  gprs.ISARRLFT as "arrLeft",  gprs.ACTDATETIME  as "acptTime" from  gprs
+          ,
+           (  select gprs.subrouteid,  gprs.productid, max(gprs.ACTDATETIME )  as lasttime  from gprs
+           where datatype ='4' 
+           group by gprs.subrouteid , gprs.productid  
+         )    t1   where  gprs.datatype='4'
+           and gprs.ACTDATETIME     = t1.lasttime   
+            and gprs.subrouteid       =t1.subrouteid
+            and gprs.ACTDATETIME      > #{time}  
+    </select>
+    
+	
+	 	
+	<select id="getLines" resultType="java.util.Map">
+	 	select top 10 ROUTEID,ROUTENAME from mcrouteinfogs
+	</select> 	
+	 	
+
+
+	
+</mapper>  
